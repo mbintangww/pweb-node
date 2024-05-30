@@ -1,4 +1,4 @@
-# [Todo List Project](https://stark-bayou-70405.herokuapp.com/) with EJS templating
+# [Todo List Project](https://stark-bayou-70405.herokuapp.com/) 
 
 Users can create as many links for every todo task. For example, https://stark-bayou-70405.herokuapp.com/work will create a todolist specific to Work todos. Users will not lose their data unless they delete it themselves, data is stored with MongoDB Cloud.
 
