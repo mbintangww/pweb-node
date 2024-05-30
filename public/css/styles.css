@@ -1,6 +1,6 @@
 html {
-  background-color: #E4E9FD;
-  background-image: -webkit-linear-gradient(65deg, #A683E3 50%, #E4E9FD 50%);
+
+
   min-height: 1000px;
   font-family: 'helvetica neue';
 }
@@ -19,7 +19,7 @@ h1 {
 }
 
 #heading {
-  background-color: #A683E3;
+  background-color: #f97fe5;
   text-align: center;
 }
 
@@ -36,7 +36,7 @@ h1 {
 
 input:checked+p {
   text-decoration: line-through;
-  text-decoration-color: #A683E3;
+  text-decoration-color: #f97fe5;
 }
 
 input[type="checkbox"] {
@@ -58,13 +58,11 @@ form.item {
 
 button {
   min-height: 50px;
-  width: 50px;
   border-radius: 50%;
   border-color: transparent;
-  background-color: #A683E3;
+  background-color: #f97fe5;
   color: #fff;
   font-size: 30px;
-  padding-bottom: 6px;
   border-width: 0;
 }
 
@@ -81,7 +79,7 @@ input[type="text"] {
 
 input[type="text"]:focus {
   outline: none;
-  box-shadow: inset 0 -3px 0 0 #A683E3;
+  box-shadow: inset 0 -3px 0 0 #f97fe5;
 }
 
 ::placeholder {
@@ -93,4 +91,47 @@ footer {
   color: white;
   color: rgba(0, 0, 0, 0.5);
   text-align: center;
+}
+
+/* styles.css */
+
+.btn-info {
+  background-color: #f97fe5;
+  border-color: #f97fe5;
+}
+
+.btn-info:hover {
+  background-color: #fa48dc;
+  border-color: #fa48dc;
+}
+
+.btn-primary {
+  background-color: #f97fe5;
+  border-color: #f97fe5;
+}
+
+.btn-primary:hover {
+  background-color: #fa48dc;
+  border-color: #fa48dc;
+}
+
+.btn-success {
+  background-color: #f97fe5;
+  border-color: #f97fe5;
+}
+
+.btn-success:hover {
+  background-color: #fa48dc;
+  border-color: #fa48dc;
+}
+
+.search-btn {
+  background-color: #f97fe5;
+  border-color: #f97fe5;
+  color: white;
+}
+
+.search-btn:hover {
+  background-color: #e14fb8;
+  border-color: #e14fb8;
 }

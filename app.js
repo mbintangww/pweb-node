@@ -1,6 +1,7 @@
 // jshint esversion:6
 const express = require('express');
 const bodyParser = require('body-parser');
+require('dotenv').config();
 const _ = require("lodash");
 //require mongoose
 const mongoose = require('mongoose');
@@ -30,7 +31,7 @@ app.set('view engine', 'ejs');
 // const workItems = [];
 //create a new db inside mongodb; connect to url where mongodb is hosted locally and name of the database(todolistDB)
 //mongodb://localhost:27017
-mongoose.connect('mongodb+srv://admin:test123@cluster0.galgf.mongodb.net/todolistDB', {
+mongoose.connect(process.env.URL, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
 });
@@ -42,17 +43,7 @@ const itemsSchema = {
 //create a new Mongoose model based on the schema
 const Item = mongoose.model('Item', itemsSchema);
 //create 3 new documents
-const item1 = new Item({
-  name: 'Todo list',
-});
-const item2 = new Item({
-  name: 'Hit the + button to add a new item',
-});
-const item3 = new Item({
-  name: '<-- Hit this to delete an item.',
-});
 
-const defaultItems = [item1, item2, item3];
 
 //for dynamic routes /work /home, create new schema
 const listSchema = {
@@ -153,10 +144,7 @@ app.post('/delete', function(req, res) {
   }
 });
 
-// work todo list
-// app.get('/work', (req, res) => {
-//   res.render('list', { listTitle: 'Work list', newListItems: workItems });
-// });
+
 
 //dynamic route parameters with express
 app.get('/:customListName', function(req, res) {
@@ -182,17 +170,34 @@ app.get('/:customListName', function(req, res) {
   });
 });
 
-app.post('/work', (req, res) => {
-  let item = req.body.newItem;
-  workItems.push(item);
-  res.redirect('/work');
+
+
+app.post('/update', (req, res) => {
+  const itemId = req.body.itemId;
+  const updatedName = req.body.updatedName;
+  
+  Item.findByIdAndUpdate(itemId, { name: updatedName }, function(err) {
+    if (!err) {
+      console.log('Successfully updated item.');
+      res.redirect('/');
+    } else {
+      console.log(err);
+    }
+  });
 });
 
-// about page
-// app.get('/about', (req, res) => {
-//   res.render('about');
-// });
 
+
+app.post('/search', (req, res) => {
+  const searchTerm = req.body.searchTerm;
+  Item.find({ name: { $regex: searchTerm, $options: 'i' } }, function(err, foundItems) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render('list', { listTitle: 'Search Results', newListItems: foundItems });
+    }
+  });
+});
 
 let port = process.env.PORT;
 if (port == null || port == "") {
